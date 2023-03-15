@@ -11,6 +11,7 @@ import ViewOrder from './APE/ViewOrder';
 //SUKAU Module
 import SukauHome from "./sukau/SukauHome";
 import SukauPlantation from "./sukau/SukauPlantation";
+import SukauCertification from "./sukau/SukauCertification";
 
 // The outlet for all the routes. This is where the routes view are defined.
 function RouterOutlet() {
@@ -23,12 +24,14 @@ function RouterOutlet() {
             <Route path="/customer" element={ <CustomerHome /> }/>
             <Route path="/customer/shop" element={ <Shop /> } />
             <Route path="/customer/purchase" element={ <Purchase /> } />
+            
 
             <Route path="/APE" element={ <APEHome /> } />
             <Route path="/APE/vieworder" element={ <ViewOrder /> } />
 
             <Route path="/sukau" element={ <SukauHome /> } />
             <Route path="/sukau/plantation" element={ <SukauPlantation /> } />
+            <Route path="/sukau/certification" element={ <SukauCertification /> } />
 
 
         </Routes>
