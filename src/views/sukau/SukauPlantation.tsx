@@ -121,11 +121,7 @@ function PlantingForm() {
 
           <div className="flex flex-col items-center h-screen">
             <br></br>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={SukauCertification}
-            >
+            <Button variant="contained" color="primary">
               save
             </Button>
           </div>
