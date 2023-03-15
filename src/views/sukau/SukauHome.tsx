@@ -10,7 +10,6 @@ import {
 import { useNavigate } from "react-router-dom";
 import { MouseEventHandler, useEffect, useState } from "react";
 import SukauAPI from "../../API/sukau";
-import SukauPlantation from "./SukauPlantation";
 
 export default function Home() {
   return (
@@ -30,7 +29,7 @@ function Planting() {
     });
   }, []);
 
-  const viewOrder = () => {
+  const SukauPlantation = () => {
     navigateTo("/sukau/SukauPlantation");
   };
 

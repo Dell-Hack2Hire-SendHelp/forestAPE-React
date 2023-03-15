@@ -35,7 +35,7 @@ function PlantingForm() {
     <Box className="flex flex-col items-center justify-center">
       Test Sukau Plantation
       <Typography variant="h5" className='font-["Cantora_One"]' color="primary">
-        Order # 1
+        Plantation # 1
       </Typography>
       <Box width={"60%"}>
         <FormContainer
@@ -104,23 +104,14 @@ function PlantingForm() {
             </Button>
           </Box>
 
-          <Box className="min-h-screen ">
-            {/* <Navbar /> */}
-            <div className="flex flex-col items-center h-screen">
-              <br></br>
-              <Button variant="contained" color="primary">
-                save
-              </Button>
-              {/* <Button variant="contained" color="primary">
-              Generate Certification PDF
-            </Button> */}
-              {/* <RouterOutlet /> */}
-            </div>
-          </Box>
+          <div className="flex flex-col items-center h-screen">
+            <br></br>
+            <Button variant="contained" color="primary">
+              save
+            </Button>
+          </div>
         </FormContainer>
       </Box>
     </Box>
   );
-
-  return <>{/* <Footer /> */}</>;
 }
