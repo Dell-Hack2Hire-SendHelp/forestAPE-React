@@ -1,8 +1,6 @@
 import { Container, Typography, Box, Link } from "@mui/material";
 
-import ProTip from "./ProTip";
 import Appbar from "./components/appbar/Appbar";
-// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function Copyright() {
   return (
@@ -18,21 +16,20 @@ function Copyright() {
 
 function App() {
   return (
-    <div className="App">
-      <div>
-        <Appbar />
-        <Container maxWidth="sm">
-          <Box sx={{ my: 5 }}>
-            <h1 className="text-3xl font-bold underline text-center">
-              Material UI Vite.js in TypeScript with TailwindCSS
-            </h1>
-            <br></br>
-            <ProTip />
-            <Copyright />
-          </Box>
-        </Container>
-      </div>
-    </div>
+		<div className='App'>
+			<div>
+				<Appbar />
+				<Container maxWidth='sm'>
+					<Box sx={{ my: 5 }}>
+						<h1 className='text-3xl font-bold underline text-center'>
+							Material UI Vite.js in TypeScript with TailwindCSS
+						</h1>
+						<br></br>
+						<Copyright />
+					</Box>
+				</Container>
+			</div>
+		</div>
   );
 }
 
