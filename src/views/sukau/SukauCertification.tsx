@@ -10,11 +10,11 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import SukauAPI from "../../API/sukau";
+import PDFViewer from "../../components/PDFViewer";
 
 export default function Home() {
   return (
     <>
-      TEST
       <Certificate />
     </>
   );
@@ -36,42 +36,10 @@ function Certificate() {
 
   return (
     <>
-      Sukau Home
-      <Card sx={{ maxWidth: 345 }}>
-        <CardMedia />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            Plantation #1
-          </Typography>
-          <Box
-            component="span"
-            sx={{ display: "block", p: 0.5, m: 1, borderRadius: 2 }}
-          >
-            Customer Name:
-          </Box>
-          <Box
-            component="span"
-            sx={{ display: "block", p: 0.5, m: 1, borderRadius: 2 }}
-          >
-            Order Date:
-          </Box>
-          <Box
-            component="span"
-            sx={{ display: "block", p: 0.5, m: 1, borderRadius: 2 }}
-          >
-            Numeber of Trees:
-          </Box>
-          <Box
-            component="span"
-            sx={{ display: "block", p: 0.5, m: 1, borderRadius: 2 }}
-          >
-            Order Status:
-          </Box>
-        </CardContent>
-        <CardActions style={{ justifyContent: "center" }}>
-          <Button size="small" variant="contained"></Button>
-        </CardActions>
-      </Card>
+      Here is your certifcate!
+      <div>
+        <PDFViewer url="" />
+      </div>
     </>
   );
 }
