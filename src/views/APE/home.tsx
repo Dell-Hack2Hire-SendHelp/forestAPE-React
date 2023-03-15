@@ -1,35 +1,61 @@
-import { Button, Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material";
+import { Box, Button, Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material";
+import ViewOrder from "./ViewOrder";
+import { useNavigate } from "react-router-dom";
+import { MouseEventHandler, useEffect, useState } from "react";
+import { APEAPI } from "../../API/APE";
 
 export default function Home() {
 	return <>
-        <h1>Home</h1>
+        <Order />
     </>;
 }
 
 function Order() {
-    function getAllOrder() {
-        return (
-            console.log("getAllOrder() called")
+    const navigateTo = useNavigate();
+    const [order, setOrder] = useState<any>([]);
+
+    useEffect(() => {
+        const res = APEAPI.getAllOrders().then((res) => {
+            setOrder(res.data);
+        }
         )
-    }
+    }, [])
+
+    const viewOrder = () => {
+		navigateTo("/APE/vieworder");
+	};
 
     return (
 		<>
 			<Card sx={{ maxWidth: 345 }}>
-				<CardMedia/>
+				<CardMedia />
 				<CardContent>
 					<Typography gutterBottom variant='h5' component='div'>
-						Lizard
+						Order #1
 					</Typography>
-					<Typography variant='body2' color='text.secondary'>
-						Lizards are a widespread group of squamate reptiles,
-						with over 6,000 species, ranging across all continents
-						except Antarctica
-					</Typography>
+					<Box
+						component='span'
+						sx={{ display: "block", p: 0.5, m: 1, borderRadius: 2 }}
+					>
+						Customer Name:
+					</Box>
+					<Box
+						component='span'
+						sx={{ display: "block", p: 0.5, m: 1, borderRadius: 2 }}
+					>
+						Order Date:
+					</Box>
+					<Box
+						component='span'
+						sx={{ display: "block", p: 0.5, m: 1, borderRadius: 2 }}
+					>
+						Order Status:
+					</Box>
 				</CardContent>
-				<CardActions>
-					<Button size='small'>Share</Button>
-					<Button size='small'>Learn More</Button>
+				<CardActions style={{ justifyContent: "center" }}>
+					<Button size='small' variant="contained" onClick={viewOrder}>
+						View
+					</Button>
 				</CardActions>
 			</Card>
 		</>
