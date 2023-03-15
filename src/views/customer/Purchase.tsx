@@ -3,6 +3,7 @@ import { FormContainer, TextFieldElement, SelectElement, SwitchElement } from 'r
 import { customerAPI } from '../../API/customer';
 
 export default function Purchase() {
+    
     return(
         <>
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
@@ -18,6 +19,7 @@ export default function Purchase() {
                     message: '' 
                 }}
                 onSuccess={data => customerAPI.createPurchase(data)}
+                // onSuccess={data => console.log(data)}
             >
                 <Box className='flex'>
                     {/* 1, 3, 5, 10, 25, 50 */}
@@ -75,7 +77,7 @@ export default function Purchase() {
                         Receiver's Email:
                     </Typography>
                     <TextFieldElement
-                        name='receiversemail'
+                        name='receiversEmail'
                         label="Receiver's Email"
                         variant='outlined'
                         size='medium'
