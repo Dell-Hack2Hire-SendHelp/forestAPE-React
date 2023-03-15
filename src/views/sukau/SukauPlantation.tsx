@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { FaSeedling } from "react-icons/fa";
 import { useToast } from "../../hooks/useToast";
 import SukauAPI from "../../API/sukau";
+import { useAppSelector } from "../../hooks/useRedux";
 
 export default function SukauPlantation() {
   return (
@@ -21,13 +22,19 @@ function PlantingForm() {
   const navigateTo = useNavigate();
   const [order, setOrder] = useState<any>([]);
   const { alertSuccess, alertError } = useToast();
+  const { value } = useAppSelector((state) => state.plantation);
 
   useEffect(() => {
-    const res = SukauAPI.getAllOrders().then((res: { data: any }) => {
-      setOrder(res);
-      console.log(res);
-    });
+    const res = SukauAPI.getOrderById(value)
+      .then((res: { data: any }) => {
+        setOrder(res);
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
+
 
   const SukauCertification = () => {
     navigateTo("/sukau/certification");
@@ -54,22 +61,22 @@ function PlantingForm() {
         <FormContainer onSuccess={SukauCertification} onError={handleError}>
           <Box className="flex flex-col gap-3 mt-5">
             <TextFieldElement
-              name={"customer.receiver_name"}
-              label="Receiver Name"
+              name={"order?.receiver_name"}
+              label={order.receiver_name}
               variant="outlined"
               size="small"
               disabled
             />
             <TextFieldElement
-              name={"date.order_date"}
-              label="Order Date"
+              name={"order?.order_date"}
+              label={order?.order_date}
               variant="outlined"
               size="small"
               disabled
             />
             <TextFieldElement
-              name={"tree_number.trees_number"}
-              label="Number Planted Tree/s"
+              name={"order.trees_number"}
+              label={order?.trees_number}
               variant="outlined"
               size="small"
               disabled

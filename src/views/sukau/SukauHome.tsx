@@ -11,6 +11,8 @@ import { useNavigate } from "react-router-dom";
 import { MouseEventHandler, useEffect, useState } from "react";
 import SukauAPI from "../../API/sukau";
 import { GiPlantRoots } from "react-icons/gi";
+import { useAppDispatch } from "../../hooks/useRedux";
+import {updateValue} from "../../redux/plantationSlice";
 
 export default function Home() {
   return (
@@ -23,6 +25,7 @@ export default function Home() {
 function Planting() {
   const navigateTo = useNavigate();
   const [order, setOrder] = useState<any>([]);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const res = SukauAPI.getAllOrders().then((res: { data: any }) => {
@@ -32,6 +35,7 @@ function Planting() {
   }, []);
 
   const SukauPlantation = () => {
+    dispatch(updateValue(order.id));
     navigateTo("/sukau/plantation");
   };
 
@@ -86,7 +90,11 @@ function Planting() {
                 <Button
                   size="small"
                   variant="contained"
-                  onClick={SukauPlantation}
+                  onClick={() => {
+                    dispatch(updateValue(order.id));
+                    navigateTo("/sukau/plantation");
+                  }
+                  }
                 >
                   Plant
                 </Button>

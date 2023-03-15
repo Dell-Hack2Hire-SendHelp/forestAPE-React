@@ -15,11 +15,10 @@ const SukauAPI = {
 
   async getOrderById(id: Number) {
     try {
-      const response = await axios.get(API_URL + id);
+      const response = await axios.get(API_URL + "getOrderById?id=" + id);
       if (response.status === 200) {
         // Return an object with only the order details and status properties
-        const { orderDetails, status } = response.data;
-        return { orderDetails, status };
+        return response.data;
       }
     } catch (error: any) {}
   },
