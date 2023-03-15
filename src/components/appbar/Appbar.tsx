@@ -13,6 +13,7 @@ const pages = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     { name: "Contact", href: "/contact" },
+
 ];
 const userControls = [
     { name: "Logout", href: "/logout" },
