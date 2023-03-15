@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
+import axios from "axios";
 import { Provider } from 'react-redux';
 import { ThemeProvider } from "@emotion/react";
 import { BrowserRouter } from "react-router-dom";
@@ -18,7 +19,7 @@ import '@fontsource/cantora-one';
 
 import { store } from "./redux/store";
 
-
+axios.defaults.withCredentials = true;
 
 const app = (
     <React.StrictMode>
