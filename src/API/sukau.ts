@@ -6,8 +6,12 @@ const SukauAPI = {
     try {
       const response = await axios.get(API_URL);
       if (response.status === 200) {
+        // Return an array of objects with only the order details and status properties
+        return response.data.map(({ orderDetails, status }) => ({
+          orderDetails,
+          status,
+        }));
       }
-      return response.data;
     } catch (error: any) {}
   },
 
@@ -15,8 +19,10 @@ const SukauAPI = {
     try {
       const response = await axios.get(API_URL + id);
       if (response.status === 200) {
+        // Return an object with only the order details and status properties
+        const { orderDetails, status } = response.data;
+        return { orderDetails, status };
       }
-      return response.data;
     } catch (error: any) {}
   },
 

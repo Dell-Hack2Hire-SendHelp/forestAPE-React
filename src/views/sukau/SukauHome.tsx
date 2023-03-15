@@ -57,7 +57,7 @@ function Planting() {
             component="span"
             sx={{ display: "block", p: 0.5, m: 1, borderRadius: 2 }}
           >
-            Customer Name:
+            Receiver Name:
           </Box>
           <Box
             component="span"
