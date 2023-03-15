@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import Container from "@mui/material/Container";
 import RouterOutlet from "../RouterOutlet";
 import { useDialog } from "../../hooks/useDialog";
@@ -13,7 +13,8 @@ function SukauHome() {
         Test Sukau Dashboard
         <br></br>
         <Card></Card>
-        <RouterOutlet />
+        <br></br>
+        {/* <RouterOutlet /> */}
       </Box>
 
       {/* <Footer /> */}

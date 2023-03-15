@@ -1,31 +1,11 @@
 import axios from "axios";
-const API_URL = "http://localhost:5000/forms/";
+const API_URL = "http://localhost:5000/sukau/";
 
 const SukauAPI = {
-  async getForms() {
-    const response = await axios.get(API_URL);
+  async viewHistory(sukauId: string) {
+    const response = await axios.get(API_URL + sukauId);
     return response.data;
   },
-
-  //   async getFormByID(formID) {
-  //     const response = await axios.get(API_URL + formID);
-  //     return response.data;
-  //   },
-
-  //   async createForm(data) {
-  //     const response = await axios.post(API_URL, data);
-  //     return response.data;
-  //   },
-
-  //   async updateForm(formID, data) {
-  //     const response = await axios.patch(API_URL + formID, data);
-  //     return response.data;
-  //   },
-
-  //   async deleteForm(formID) {
-  //     const response = await axios.delete(API_URL + formID);
-  //     return response.data;
-  //   },
 };
 
 export default SukauAPI;

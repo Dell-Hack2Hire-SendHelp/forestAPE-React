@@ -3,9 +3,9 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { CardActionArea } from "@mui/material";
+import { Button, CardActionArea, CardActions } from "@mui/material";
 
-export default function ActionAreaCard() {
+export default function MultiActionAreaCard() {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
@@ -19,9 +19,16 @@ export default function ActionAreaCard() {
           <Typography gutterBottom variant="h5" component="div">
             Plantation #
           </Typography>
-          <Typography variant="body2" color="text.secondary"></Typography>
+          <Typography variant="body2" color="text.secondary">
+            Plantation Description
+          </Typography>
         </CardContent>
       </CardActionArea>
+      <CardActions>
+        <Button size="small" color="primary">
+          Plant
+        </Button>
+      </CardActions>
     </Card>
   );
 }
