@@ -18,7 +18,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 
 const pages = [
   { name: "Home", href: "/" },
-  { name: "Plantation", href: "/sukauHome" },
+  { name: "Plantation", href: "/sukau/sukauHome" },
 ];
 
 const userControls = [{ name: "Logout", href: "/logout" }];
