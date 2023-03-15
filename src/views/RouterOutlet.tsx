@@ -1,9 +1,15 @@
 import { Routes, Route } from 'react-router-dom';
 import SignIn from './auth/SignIn';
-//Customer Module
+
 import CustomerHome from './customer/Home';
 import Shop from './customer/Shop';
 import Purchase from './customer/Purchase';
+
+import History from './customer/History';
+
+
+
+
 import ViewHistory from './customer/ViewHistory';
 //APE Module
 import APEHome from './APE/APEHome';
@@ -41,6 +47,7 @@ function RouterOutlet() {
 			</Routes>
 		</>
 	); 
+
 }
 
 export default RouterOutlet;

@@ -1,10 +1,17 @@
 import axios from 'axios';
+
+const API_URL = "http://localhost:3000/cust/";
+
 import { useToast } from '../hooks/useToast';
-const API_URL = "http://localhost:5000/forms/";
+
 
 const { alertError, alertSuccess, alertInfo, alertWarning } = useToast();
 export const customerAPI = {
     async createPurchase(data: any){
+
+        const response = await axios.post(API_URL+"purchase", data);
+        return response.data;
+
         try {
 			alertInfo("Purchasing...");
 			const response = await axios.post(API_URL, data);
@@ -16,6 +23,7 @@ export const customerAPI = {
 			alertError(error.toString());
 		}
        
+
     },
 
     async viewHistory(customerId: string){
@@ -32,5 +40,5 @@ export const customerAPI = {
 
         
     }
-    
+
 }

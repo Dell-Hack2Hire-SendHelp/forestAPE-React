@@ -1,7 +1,11 @@
+
+import {Link} from 'react-router-dom';
+
 import {Box, Typography, Button, Card, CardActions, CardContent, CardMedia} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { HiShoppingCart } from 'react-icons/hi';
 import { AiFillStar } from 'react-icons/ai';
+
 
 
 export default function Home() {
@@ -10,6 +14,7 @@ export default function Home() {
 			navigateTo("/customer/shop");
 		};
     return (
+
 		<>
 			<Box className='flex flex-col items-center justify-center mt-2'>
 				<Typography
@@ -54,4 +59,5 @@ export default function Home() {
 			</Card>
 		</>
 	);
+
 }
