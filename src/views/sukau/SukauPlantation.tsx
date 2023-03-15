@@ -87,7 +87,6 @@ function PlantingForm() {
             <Grid container spacing={2}>
               <Grid item xs={6}>
                 <TextFieldElement
-                  type={"number"}
                   required
                   fullWidth
                   variant="outlined"
@@ -100,7 +99,6 @@ function PlantingForm() {
               </Grid>
               <Grid item xs={6}>
                 <TextFieldElement
-                  type={"number"}
                   required
                   fullWidth
                   variant="outlined"
