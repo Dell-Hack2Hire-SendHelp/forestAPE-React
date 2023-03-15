@@ -17,10 +17,10 @@ export default function HistoryDetail() {
 				</Typography>
 			</Box>
 			<hr />
-			<Box className='flex flex-col items-center justify-center mt-2 w-full'>
-				<Box className='flex items-center gap-3'>Image here</Box>
+			<Box className='items-center justify-center mt-2' sx={{width:"100%"}}>
+				<Box className='flex items-center gap-3 mb-24'>Image here</Box>
 				<Box>
-					<PDFViewer style={{ width: "100%", maxHeight: '100vh'}} >
+					<PDFViewer style={{ width: "100%", minHeight:"100vh"}} >
 						<PlantingCertificate
 							name='Soh Jun Wei'
 							message='Hello'
