@@ -13,11 +13,14 @@ specifiers:
   '@react-pdf/renderer': ^3.1.7
   '@reduxjs/toolkit': ^1.9.3
   '@tailwindcss/typography': ^0.5.9
+  '@types/file-saver': ^2.0.5
   '@types/react': latest
   '@types/react-dom': latest
+  '@types/react-pdf': ^6.2.0
   '@vitejs/plugin-react': latest
   autoprefixer: ^10.4.14
   axios: ^1.3.4
+  file-saver: ^2.0.5
   notistack: ^2.0.8
   postcss: ^8.4.21
   react: latest
@@ -25,6 +28,7 @@ specifiers:
   react-hook-form: ^7.43.5
   react-hook-form-mui: ^5.16.0
   react-icons: ^4.8.0
+  react-pdf: ^6.2.2
   react-redux: ^8.0.5
   react-router-dom: ^6.9.0
   tailwindcss: ^3.2.7
@@ -44,19 +48,23 @@ dependencies:
   '@react-pdf/renderer': 3.1.7_react@18.2.0
   '@reduxjs/toolkit': 1.9.3_k4ae6lp43ej6mezo3ztvx6pykq
   axios: 1.3.4
+  file-saver: 2.0.5
   notistack: 2.0.8_bgwnxl5zt7ygprgluq6y2pswwq
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-hook-form: 7.43.5_react@18.2.0
   react-hook-form-mui: 5.16.0_dxqd5jg3yofskqbn6n7zv3dtsu
   react-icons: 4.8.0_react@18.2.0
+  react-pdf: 6.2.2_biqbaboplfbrettd7655fr4n2y
   react-redux: 8.0.5_3xleytyzprlgycb2ded54tx72i
   react-router-dom: 6.9.0_biqbaboplfbrettd7655fr4n2y
 
 devDependencies:
   '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.7
+  '@types/file-saver': 2.0.5
   '@types/react': 18.0.28
   '@types/react-dom': 18.0.11
+  '@types/react-pdf': 6.2.0
   '@vitejs/plugin-react': 3.1.0_vite@4.1.4
   autoprefixer: 10.4.14_postcss@8.4.21
   postcss: 8.4.21
@@ -1182,6 +1190,10 @@ packages:
       tailwindcss: 3.2.7_postcss@8.4.21
     dev: true
 
+  /@types/file-saver/2.0.5:
+    resolution: {integrity: sha512-zv9kNf3keYegP5oThGLaPk8E081DFDuwfqjtiTzm6PoxChdJ1raSuADf2YGCVIyrSynLrgc8JWv296s7Q7pQSQ==}
+    dev: true
+
   /@types/hoist-non-react-statics/3.3.1:
     resolution: {integrity: sha512-iMIqiko6ooLrTh1joXodJK5X9xeEALT1kM5G3ZLhD3hszxBdIEd5C75U834D9mLcINgD4OyZf5uQXjkuYydWvA==}
     dependencies:
@@ -1206,6 +1218,15 @@ packages:
     dependencies:
       '@types/react': 18.0.28
     dev: false
+
+  /@types/react-pdf/6.2.0:
+    resolution: {integrity: sha512-OSCYmrfaJvpXkM5V4seUMAhUDOAOqbGQf9kwv14INyTf7AjDs2ukfkkQrLWRQ8OjWrDklbXYWh5l7pT7l0N76g==}
+    dependencies:
+      '@types/react': 18.0.28
+      pdfjs-dist: 2.16.105
+    transitivePeerDependencies:
+      - worker-loader
+    dev: true
 
   /@types/react-transition-group/4.4.5:
     resolution: {integrity: sha512-juKD/eiSM3/xZYzjuzH6ZwpP+/lejltmiS3QEzV/vmb/Q8+HfDmxu+Baga8UEMGBqV88Nbg4l2hY/K2DkyaLLA==}
@@ -1519,6 +1540,10 @@ packages:
       csstype: 3.1.1
     dev: false
 
+  /dommatrix/1.0.3:
+    resolution: {integrity: sha512-l32Xp/TLgWb8ReqbVJAFIvXmY7go4nTxxlWiAFyhoQw9RKEOHBZNnyGvJWqDVSPmq3Y9HlM4npqF/T6VMOXhww==}
+    deprecated: dommatrix is no longer maintained. Please use @thednp/dommatrix.
+
   /electron-to-chromium/1.4.328:
     resolution: {integrity: sha512-DE9tTy2PNmy1v55AZAO542ui+MLC2cvINMK4P2LXGsJdput/ThVG9t+QGecPuAZZSgC8XoI+Jh9M1OG9IoNSCw==}
     dev: true
@@ -1602,6 +1627,10 @@ packages:
     dependencies:
       reusify: 1.0.4
     dev: true
+
+  /file-saver/2.0.5:
+    resolution: {integrity: sha512-P9bmyZ3h/PRG+Nzga+rbdI4OEpNDzAVyy74uVO9ATgzLK6VtAsYybF/+TOCvrc0MO793d6+42lLyZTw7/ArVzA==}
+    dev: false
 
   /fill-range/7.0.1:
     resolution: {integrity: sha512-qOo9F+dMUmC2Lcb4BbVvnKJxTPjCm+RRpe4gDuGrzkL7mEVl/djYSu2OdQ2Pa302N4oqkSg9ir6jaLWJ2USVpQ==}
@@ -1833,8 +1862,22 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
 
+  /make-cancellable-promise/1.2.1:
+    resolution: {integrity: sha512-nigEn7brgUhjUb2lEobWUW4ZiJdIZ/Wct0UsmDsqaZhgLMvY1OC6FGLa/5SU2RvnyuilkjM7g5JGxt6CJZQGNw==}
+    dev: false
+
+  /make-event-props/1.4.2:
+    resolution: {integrity: sha512-ZOHqRpLn2htnMd9zqhE+wticVr31PdwrJXHcvEEdKgrfjCOuSDn8urG9SDzEIqzP1ayp1uTdDJcOiTlJhqWpEQ==}
+    dev: false
+
   /media-engine/1.0.3:
     resolution: {integrity: sha512-aa5tG6sDoK+k70B9iEX1NeyfT8ObCKhNDs6lJVpwF6r8vhUfuKMslIcirq6HIUYuuUYLefcEQOn9bSBOvawtwg==}
+    dev: false
+
+  /merge-refs/1.1.2:
+    resolution: {integrity: sha512-t+FvJw2LXHnNTMRmNB2HY04uVdvCW8AbfwZi0DgUxFEoP20rnvXxZmePRML1nDiLO5KKE0p4GDu1qHhrig/Jpg==}
+    dependencies:
+      '@types/react': 18.0.28
     dev: false
 
   /merge2/1.4.1:
@@ -1977,6 +2020,17 @@ packages:
     resolution: {integrity: sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==}
     engines: {node: '>=8'}
     dev: false
+
+  /pdfjs-dist/2.16.105:
+    resolution: {integrity: sha512-J4dn41spsAwUxCpEoVf6GVoz908IAA3mYiLmNxg8J9kfRXc2jxpbUepcP0ocp0alVNLFthTAM8DZ1RaHh8sU0A==}
+    peerDependencies:
+      worker-loader: ^3.0.8
+    peerDependenciesMeta:
+      worker-loader:
+        optional: true
+    dependencies:
+      dommatrix: 1.0.3
+      web-streams-polyfill: 3.2.1
 
   /picocolors/1.0.0:
     resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}
@@ -2151,6 +2205,31 @@ packages:
 
   /react-is/18.2.0:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
+    dev: false
+
+  /react-pdf/6.2.2_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-huNWhzzTAb3t1mWA6WOR9yQRCbcZ6uXCGC46cEAgEhGqvXTB6RcHm+1DS2r9OdPNUZ9SZTuR6jZ1BNOJIiEing==}
+    peerDependencies:
+      file-loader: ^6.0.0
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      file-loader:
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.21.0
+      clsx: 1.2.1
+      make-cancellable-promise: 1.2.1
+      make-event-props: 1.4.2
+      merge-refs: 1.1.2
+      pdfjs-dist: 2.16.105
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      tiny-invariant: 1.3.1
+      tiny-warning: 1.0.3
+    transitivePeerDependencies:
+      - worker-loader
     dev: false
 
   /react-redux/8.0.5_3xleytyzprlgycb2ded54tx72i:
@@ -2406,6 +2485,14 @@ packages:
     resolution: {integrity: sha512-pkY1fj1cKHb2seWDy0B16HeWyczlJA9/WW3u3c4z/NiWDsO3DOU5D7nhTLE9CF0yXv/QZFY7sEJmj24dK+Rrqw==}
     dev: false
 
+  /tiny-invariant/1.3.1:
+    resolution: {integrity: sha512-AD5ih2NlSssTCwsMznbvwMZpJ1cbhkGd2uueNxzv2jDlEeZdU04JQfRnggJQ8DrcVBGjAsCKwFBbDlVNtEMlzw==}
+    dev: false
+
+  /tiny-warning/1.0.3:
+    resolution: {integrity: sha512-lBN9zLN/oAf68o3zNXYrdCt1kP8WsiGW8Oo2ka41b2IM5JL/S1CTyX1rW0mb/zSuJun0ZUrDxx4sqvYS2FWzPA==}
+    dev: false
+
   /to-fast-properties/2.0.0:
     resolution: {integrity: sha512-/OaKK0xYrs3DmxRYqL/yDc+FxFUVYhDlXMhRmv3z915w2HF1tnN1omB354j8VUGO/hbRzyD6Y3sA7v7GS/ceog==}
     engines: {node: '>=4'}
@@ -2508,6 +2595,10 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
+
+  /web-streams-polyfill/3.2.1:
+    resolution: {integrity: sha512-e0MO3wdXWKrLbL0DgGnUV7WHVuw9OUvL4hjgnPkIeEvESk74gAITi5G606JtZPp39cd8HA9VQzCIvA49LpPN5Q==}
+    engines: {node: '>= 8'}
 
   /webidl-conversions/3.0.1:
     resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
