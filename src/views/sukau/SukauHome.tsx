@@ -48,8 +48,8 @@ function Planting() {
       </Box>
       <hr />
       <br />
-      {
-        order.map((order: any) => {
+      <Box sx={{ display: "flex", flexWrap: "wrap" }}>
+        {order.map((order: any) => {
           return (
             <Card sx={{ maxWidth: 345 }}>
               <CardMedia />
@@ -83,15 +83,18 @@ function Planting() {
                 </Box>
               </CardContent>
               <CardActions style={{ justifyContent: "center" }}>
-                <Button size="small" variant="contained" onClick={SukauPlantation}>
+                <Button
+                  size="small"
+                  variant="contained"
+                  onClick={SukauPlantation}
+                >
                   Plant
                 </Button>
               </CardActions>
             </Card>
           );
-        })
-      }
-      {/* <Card sx={{ maxWidth: 345 }}>
+        })}
+        {/* <Card sx={{ maxWidth: 345 }}>
         <CardMedia />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
@@ -128,6 +131,7 @@ function Planting() {
           </Button>
         </CardActions>
       </Card> */}
+      </Box>
     </>
   );
 }
