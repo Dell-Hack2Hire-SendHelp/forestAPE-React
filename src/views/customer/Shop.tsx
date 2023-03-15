@@ -3,7 +3,6 @@ import { useState } from "react";
 import { AutocompleteElement, FormContainer, SelectElement, TextFieldElement } from "react-hook-form-mui";
 import { AiFillStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import ShopBox from "../../components/customer/ShopBox";
 
 export default function Shop() {
     const [product_total, setProductTotal] = useState<number>(0.00);
