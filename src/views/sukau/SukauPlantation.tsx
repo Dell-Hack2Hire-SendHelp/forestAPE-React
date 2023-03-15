@@ -10,79 +10,123 @@ import {
 import Container from "@mui/material/Container";
 import RouterOutlet from "../RouterOutlet";
 import { useDialog } from "../../hooks/useDialog";
-import Card from "../../components/sukau/Card";
-import React, { useState } from "react";
 import MenuItem from "@mui/material/MenuItem";
+import { FormContainer, TextFieldElement } from "react-hook-form-mui";
+import axios from "axios";
+import { useTheme } from "@emotion/react";
+import { useNavigate } from "react-router-dom";
+import { MouseEventHandler, useEffect, useState } from "react";
+import SukauAPI from "../../API/sukau";
 
-// The basic structure view that act as the template for all the routes.
-
-function SukauPlantation() {
+export default function SukauPlantation() {
   return (
     <>
-      <Box className="min-h-screen ">
-        {/* <Navbar /> */}
-        <div className="flex flex-col items-center h-screen">
-          Test Sukau Plantation
-          <Grid container spacing={2}>
-            <Grid item xs={6}>
-              <TextField
-                fullWidth
-                variant="outlined"
-                label="First Name"
-                name="firstName"
-                required
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                fullWidth
-                variant="outlined"
-                label="Last Name"
-                name="lastName"
-                required
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <Button type="submit" variant="contained" color="primary">
-                Submit
-              </Button>
-            </Grid>
-          </Grid>
-          <Typography variant="h5">Order #1 for *insert Name*</Typography>
-          <form className="flex flex-col items-center">
-            Name of Customer
-            <TextField
-              style={{ width: "200px", margin: "5px" }}
-              type="text"
-              label="Name of Customer"
-              variant="outlined"
-            />
-            Coordinates
-            <TextField
-              style={{ width: "200px", margin: "5px" }}
-              type="text"
-              label="Coordinates"
-              variant="outlined"
-            />
-            <Button variant="contained" component="label">
-              Upload File
-              <input type="file" hidden />
-            </Button>
-            <br></br>
-            <Button variant="contained" color="primary">
-              save
-            </Button>
-            {/* <Button variant="contained" color="primary">
-              Generate Certification PDF
-            </Button> */}
-          </form>
-          {/* <RouterOutlet /> */}
-        </div>
-      </Box>
-
-      {/* <Footer /> */}
+      <PlantingForm />
     </>
   );
 }
 
-export default SukauPlantation;
+function PlantingForm() {
+  function getOrder() {
+    //TODO: Get single order from database by id
+
+    // return console.log("getOrder() called");
+
+    const navigateTo = useNavigate();
+    const [order, setOrder] = useState<any>([]);
+
+    useEffect(() => {
+      const res = SukauAPI.getAllOrders().then((res: { data: any }) => {
+        setOrder(res.data);
+      });
+    }, []);
+
+    const SukauCertification = () => {
+      navigateTo("/sukau/SukauCertification");
+    };
+  }
+
+  return (
+    <Box className="flex flex-col items-center justify-center">
+      Sukau Plantation
+      <Typography variant="h5" className='font-["Cantora_One"]' color="primary">
+        Plantation # 1
+      </Typography>
+      <Box width={"60%"}>
+        <FormContainer
+          defaultValues={{
+            //TODO: Get single order from database by id
+
+            customer: {
+              "default-text-field": "Ethan",
+            },
+            date: {
+              "default-text-field": "20/12/2023",
+            },
+
+            tree_number: {
+              "default-text-field": "4",
+            },
+          }}
+        >
+          <Box className="flex flex-col gap-3 mt-5">
+            <TextFieldElement
+              name={"customer.default-text-field"}
+              label="Customer Name"
+              variant="outlined"
+              size="small"
+              disabled
+            />
+            <TextFieldElement
+              name={"date.default-text-field"}
+              label="Order Date"
+              variant="outlined"
+              size="small"
+              disabled
+            />
+            <TextFieldElement
+              name={"tree_number.default-text-field"}
+              label="Number Planted Tree/s"
+              variant="outlined"
+              size="small"
+              disabled
+            />
+            Coordinates
+            <Grid container spacing={2}>
+              <Grid item xs={6}>
+                <TextField
+                  fullWidth
+                  variant="outlined"
+                  label="Longitude"
+                  name="Longitude"
+                  required
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <TextField
+                  fullWidth
+                  variant="outlined"
+                  label="Latitude"
+                  name="Latitude"
+                  required
+                />
+              </Grid>
+              <Grid item xs={12}></Grid>
+            </Grid>
+            <Button variant="contained" component="label">
+              Upload Image
+              <input type="file" required />
+            </Button>
+          </Box>
+
+          <div className="flex flex-col items-center h-screen">
+            <br></br>
+            <Button variant="contained" color="primary">
+              save
+            </Button>
+          </div>
+        </FormContainer>
+      </Box>
+    </Box>
+  );
+}

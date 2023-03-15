@@ -1,23 +1,34 @@
 import axios from "axios";
-import { useToast } from "../hooks/useToast";
-const API_URL = "http://localhost:5000/sukau/";
+const API_URL = "http://localhost:5000/forms/";
 
-
-const { alertError, alertSuccess, alertInfo, alertWarning } = useToast();
 const SukauAPI = {
-  async viewHistory(sukauId: string) {
-    try{
-      alertInfo("Quering...");
-      const response = await axios.get(API_URL + sukauId);
-      if (response.status === 200) {
-        alertSuccess("Query successful");
-      }
+  async getAllOrders() {
+    try {
+      const response = await axios.get(API_URL);
       return response.data;
-    }catch(error: any){
-      alertError(error.toString());
+    } catch (error) {
+      console.log(error);
     }
-    
   },
+
+  // async getOrderById(){
+  //     try {
+  //         const response = await axios.get(API_URL + );
+  //         return response.data;
+  //     } catch (error) {
+  //         console.log(error);
+  //     }
+  // },
+
+  // async postOrderStatus() {
+  //     try {
+  //         const response = await axios.post(API_URL, data);
+  //         return response.data;
+  //     }
+  //     catch (error) {
+  //         console.log(error);
+  //     }
+  // }
 };
 
 export default SukauAPI;
