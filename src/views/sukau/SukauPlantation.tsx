@@ -4,6 +4,7 @@ import { FormContainer, TextFieldElement } from "react-hook-form-mui";
 import { useNavigate } from "react-router-dom";
 import { FaSeedling } from "react-icons/fa";
 import { useToast } from "../../hooks/useToast";
+import SukauAPI from "../../API/sukau";
 
 export default function SukauPlantation() {
   return (
@@ -20,7 +21,13 @@ function PlantingForm() {
   const navigateTo = useNavigate();
   const [order, setOrder] = useState<any>([]);
   const { alertSuccess, alertError } = useToast();
-  // useEffect(() => {}, []);
+
+  useEffect(() => {
+    const res = SukauAPI.getAllOrders().then((res: { data: any }) => {
+      setOrder(res);
+      console.log(res);
+    });
+  }, []);
 
   const SukauCertification = () => {
     navigateTo("/sukau/certification");
@@ -38,46 +45,30 @@ function PlantingForm() {
           className='font-["Cantora_One"] flex '
           color="primary"
         >
-          Plantation 1 <FaSeedling />
+          Plantation # {order.id}
+          <FaSeedling />
         </Typography>
       </Box>
       <hr />
       <Box className="flex flex-col items-center justify-center">
-        <FormContainer
-          onSuccess={SukauCertification}
-          onError={handleError}
-          defaultValues={{
-            //TODO: Get single order from database by id
-
-            customer: {
-              "default-text-field": "Ethan",
-            },
-            date: {
-              "default-text-field": "20/12/2023",
-            },
-
-            tree_number: {
-              "default-text-field": "4",
-            },
-          }}
-        >
+        <FormContainer onSuccess={SukauCertification} onError={handleError}>
           <Box className="flex flex-col gap-3 mt-5">
             <TextFieldElement
-              name={"customer.default-text-field"}
+              name={"customer.receiver_name"}
               label="Receiver Name"
               variant="outlined"
               size="small"
               disabled
             />
             <TextFieldElement
-              name={"date.default-text-field"}
+              name={"date.order_date"}
               label="Order Date"
               variant="outlined"
               size="small"
               disabled
             />
             <TextFieldElement
-              name={"tree_number.default-text-field"}
+              name={"tree_number.trees_number"}
               label="Number Planted Tree/s"
               variant="outlined"
               size="small"

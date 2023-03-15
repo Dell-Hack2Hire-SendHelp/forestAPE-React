@@ -48,7 +48,7 @@ function Planting() {
       </Box>
       <hr />
       <br />
-      <Box sx={{ display: "flex", flexWrap: "wrap" }}>
+      <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
         {order.map((order: any) => {
           return (
             <Card sx={{ maxWidth: 345 }}>
