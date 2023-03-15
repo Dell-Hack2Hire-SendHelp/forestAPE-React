@@ -1,4 +1,5 @@
 import axios from "axios";
+
 const API_URL = "http://localhost:3000/sukau/";
 
 const SukauAPI = {
@@ -11,6 +12,7 @@ const SukauAPI = {
       }
     } catch (error: any) {}
     
+
   },
 
   async getOrderById(id: Number) {
@@ -32,5 +34,3 @@ const SukauAPI = {
     } catch (error: any) {}
   },
 };
-
-export default SukauAPI;
