@@ -1,25 +1,52 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import { FormContainer, TextFieldElement } from "react-hook-form-mui";
 import { Box, Typography, Button } from "@mui/material";
-import axios from "axios";
-import { useTheme } from "@emotion/react";
+import { useNavigate } from "react-router-dom";
+import { APEAPI } from "../../API/APE";
+import { useDialog} from '../../hooks/useDialog';
 
-export default function ViewOrder() {
-
-
-	return <>
-        <OrderForm />
-    </>;
+interface Props {
+	orderId: number;
 }
 
-function OrderForm() {
-    function getOrder() {
-        //TODO: Get single order from database by id
-        
-        return (
-            console.log("getOrder() called")
-        )
-    }
+export default function ViewOrder({orderId}:Props) {
+
+	const [order, setOrder] = useState<any>(null);
+	const navigateTo = useNavigate();
+	const { openConfirmDialog, closeDialog } = useDialog();
+
+	const handleAccept = () => {
+		openConfirmDialog({
+			title: "Accept Order",
+			message: "Are you sure you want to accept this order?",
+			onConfirm: () => {
+				//TODO: Accept order API
+				navigateTo("/APE");
+			},
+			onCancel: () => {
+				closeDialog();
+			},
+			type: "primary",
+		});
+	};
+
+	const handleReject = () => {
+		openConfirmDialog({
+			title: "Reject Order",
+			message: "Are you sure you want to reject this order?",
+			onConfirm: () => {
+				//TODO: Reject order API
+			},
+			onCancel: () => {
+				closeDialog();
+			},
+			type: "error",
+		});
+	};
+
+	useEffect(() => {
+		//TODO: Get single order from database by id
+	}, []);
 
 	return (
 		<Box className='flex flex-col items-center justify-center'>
@@ -116,6 +143,7 @@ function OrderForm() {
 							variant='contained'
 							color='primary'
 							size='medium'
+							onClick={handleAccept}
 						>
 							Accept
 						</Button>
@@ -124,7 +152,7 @@ function OrderForm() {
 							variant='contained'
 							color='error'
 							size='medium'
-							value='Reject'
+							onClick={handleReject}
 						>
 							Reject
 						</Button>

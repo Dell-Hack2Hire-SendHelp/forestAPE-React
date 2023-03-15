@@ -1,6 +1,6 @@
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { MouseEventHandler, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { APEAPI } from "../../API/APE";
 
 export default function Home() {
@@ -11,16 +11,17 @@ export default function Home() {
 
 function Order() {
     const navigateTo = useNavigate();
-    const [order, setOrder] = useState<any>([]);
+    const [orders, setOrders] = useState<any>([]);
 
     useEffect(() => {
         const res = APEAPI.getAllOrders().then((res) => {
-            setOrder(res.data);
+            setOrders(res.data);
         }
         )
     }, [])
 
     const viewOrder = () => {
+
 		navigateTo("/APE/vieworder");
 	};
 
