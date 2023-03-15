@@ -203,7 +203,7 @@ function Appbar() {
 						{user === null ? (
 							<Button
 								className='text-white font-["Cantora_One"]'
-								onClick={() => navigateTo("/")}
+								onClick={() => navigateTo("/signin")}
 							>
 								Sign in
 							</Button>
@@ -239,7 +239,7 @@ function Appbar() {
 							onClose={handleCloseUserMenu}
 						>
 							{user === null ? (
-								<MenuItem onClick={() => navigateTo("/")}>
+								<MenuItem onClick={() => navigateTo("/signin")}>
 									<Typography textAlign='center'>
 										Sign In
 									</Typography>

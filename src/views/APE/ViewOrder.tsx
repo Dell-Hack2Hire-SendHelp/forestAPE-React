@@ -91,7 +91,7 @@ export default function ViewOrder() {
 						variant='outlined'
 						size='small'
 						disabled
-						value={order?.planter ? order.planter : "Unasign"}
+						value={order?.planter ? order.planter : "Unassign"}
 					/>
 					Customer Name:
 					<TextField
@@ -129,7 +129,7 @@ export default function ViewOrder() {
 						value={
 							order?.latitude
 								? order.latitude + "  " + order.logitude
-								: "Unrequested"
+								: "Not Available"
 						}
 					/>
 					Number of Tree/s:
