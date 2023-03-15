@@ -1,12 +1,11 @@
 import axios from 'axios';
-import { useToast } from '../hooks/useToast';
-const API_URL = "http://localhost:5000/forms/";
+const API_URL = "http://localhost:3000/ape";
 
 export const APEAPI = {
 
 
     async getAllOrders(){
-        const response = await axios.get(API_URL);
+        const response = await axios.get(API_URL+"/getAllOrders2");
         return response.data;
     },
 
