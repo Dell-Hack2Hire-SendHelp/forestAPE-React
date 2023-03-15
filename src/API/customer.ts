@@ -26,19 +26,10 @@ export const customerAPI = {
 
     },
 
-    async viewHistory(customerId: string){
-        // try {
-        //     alertInfo("Quering...");
-        //     const response = await axios.get(API_URL + customerId);
-        //     if (response.status === 200) {
-        //         alertSuccess("Query successful");
-        //     }
-        //     return response.data;    
-        // } catch (error: any) {
-        //     alertError(error.toString());
-        // }
-
-        
+    async viewHistory(){
+        const response = await axios.get(API_URL+"myOrders");
+        console.log(response.data);
+        return response.data;
     }
 
 }

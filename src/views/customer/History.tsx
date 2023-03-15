@@ -11,13 +11,12 @@ function History(){
     }
 
     const [trees, setTrees] = useState([tree]);
-    const [custID, setCustID] = useState('0');
 
     useEffect(() => {
         console.log('History page loaded');
-        customerAPI.viewHistory(custID)
+        customerAPI.viewHistory()
         .then((res) => {
-            setTrees(res.data);
+            // setTrees(res.data);
             console.log(res.data);
         })
         .catch((err) => {
@@ -34,7 +33,10 @@ function History(){
             trees.map((tree) => {
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
                     <Typography variant='h5' color='primary'>
-                        Tree ID: {tree.treeID}
+                        {/* Tree ID: {tree.id} */}
+                    </Typography>
+                    <Typography variant='h5' color='primary'>
+                        {/* Receiver: {tree.receiver} */}
                     </Typography>
                 </Box>
             })
