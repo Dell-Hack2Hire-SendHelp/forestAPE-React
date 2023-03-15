@@ -100,7 +100,7 @@ function PlantingForm() {
             </Grid>
             <Button variant="contained" component="label">
               Upload Image
-              <input type="file" />
+              <input type="file" required />
             </Button>
           </Box>
 
