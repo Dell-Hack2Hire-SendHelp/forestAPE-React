@@ -4,15 +4,13 @@ const API_URL = "http://localhost:3000/sukau/";
 const SukauAPI = {
   async getAllOrders() {
     try {
-      const response = await axios.get(API_URL);
+      const response = await axios.get(API_URL+"getApprovedOrders");
       if (response.status === 200) {
         // Return an array of objects with only the order details and status properties
-        return response.data.map(({ orderDetails, status }) => ({
-          orderDetails,
-          status,
-        }));
+        return response.data;
       }
     } catch (error: any) {}
+    
   },
 
   async getOrderById(id: Number) {

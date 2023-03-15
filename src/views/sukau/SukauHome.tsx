@@ -25,9 +25,10 @@ function Planting() {
   const [order, setOrder] = useState<any>([]);
 
   useEffect(() => {
-    // const res = SukauAPI.getAllOrders().then((res: { data: any }) => {
-    //   setOrder(res.data);
-    // });
+    const res = SukauAPI.getAllOrders().then((res: { data: any }) => {
+      setOrder(res);
+      console.log(res);
+    });
   }, []);
 
   const SukauPlantation = () => {
@@ -47,7 +48,50 @@ function Planting() {
       </Box>
       <hr />
       <br />
-      <Card sx={{ maxWidth: 345 }}>
+      {
+        order.map((order: any) => {
+          return (
+            <Card sx={{ maxWidth: 345 }}>
+              <CardMedia />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  Plantation #{order.id}
+                </Typography>
+                <Box
+                  component="span"
+                  sx={{ display: "block", p: 0.5, m: 1, borderRadius: 2 }}
+                >
+                  Receiver Name: {order.receiver_name}
+                </Box>
+                <Box
+                  component="span"
+                  sx={{ display: "block", p: 0.5, m: 1, borderRadius: 2 }}
+                >
+                  Order Date: {order.order_date}
+                </Box>
+                <Box
+                  component="span"
+                  sx={{ display: "block", p: 0.5, m: 1, borderRadius: 2 }}
+                >
+                  Numeber of Trees: {order.trees_number}
+                </Box>
+                <Box
+                  component="span"
+                  sx={{ display: "block", p: 0.5, m: 1, borderRadius: 2 }}
+                >
+                  Order Status: {order.status}
+                </Box>
+              </CardContent>
+              <CardActions style={{ justifyContent: "center" }}>
+                <Button size="small" variant="contained" onClick={SukauPlantation}>
+                  Plant
+                </Button>
+              </CardActions>
+            </Card>
+          );
+        })
+      }
+      {/* <Card sx={{ maxWidth: 345 }}>
         <CardMedia />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
@@ -83,7 +127,7 @@ function Planting() {
             Plant
           </Button>
         </CardActions>
-      </Card>
+      </Card> */}
     </>
   );
 }
