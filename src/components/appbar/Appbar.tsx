@@ -17,11 +17,14 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 
 const pages = [
-  { name: "Home", href: "/" },
-  { name: "Plantation", href: "/sukau/sukauHome" },
-];
+    { name: "Home", href: "/" },
+    { name: "About", href: "/about" },
+    { name: "Contact", href: "/contact" },
 
-const userControls = [{ name: "Logout", href: "/logout" }];
+];
+const userControls = [
+    { name: "Logout", href: "/logout" },
+];
 
 function Appbar() {
   const navigate = useNavigate();
