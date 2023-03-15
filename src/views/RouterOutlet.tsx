@@ -25,18 +25,21 @@ function RouterOutlet() {
     return (
 		<>
 			<Routes>
-				<Route path='/' element={"Home"} />
-				<Route path='/signin' element={<SignIn />} />
+				{/* <Route path='/' element={"Home"} /> */}
+				<Route path='/' element={<SignIn />} />
 				<Route path='*' element={"Not Found"} />
 
 				<Route path='/customer' element={<CustomerHome />} />
 				<Route path='/customer/shop' element={<Shop />} />
 				<Route path='/customer/purchase' element={<Purchase />} />
 				<Route path='/customer/viewhistory' element={<ViewHistory />} />
-				<Route path='/customer/historydetail' element={<HistoryDetail />} />
+				<Route
+					path='/customer/historydetail'
+					element={<HistoryDetail />}
+				/>
 
 				<Route path='/APE' element={<APEHome />} />
-				<Route path='/APE/vieworder' element={<ViewOrder />} />
+				<Route path='/APE/vieworder/:id' element={<ViewOrder />} />
 
 				<Route path='/sukau' element={<SukauHome />} />
 				<Route path='/sukau/plantation' element={<SukauPlantation />} />
