@@ -33,10 +33,13 @@ function RouterOutlet() {
 				<Route path='/customer/shop' element={<Shop />} />
 				<Route path='/customer/purchase' element={<Purchase />} />
 				<Route path='/customer/viewhistory' element={<ViewHistory />} />
-				<Route path='/customer/historydetail' element={<HistoryDetail />} />
+				<Route
+					path='/customer/historydetail'
+					element={<HistoryDetail />}
+				/>
 
 				<Route path='/APE' element={<APEHome />} />
-				<Route path='/APE/vieworder' element={<ViewOrder />} />
+				<Route path='/APE/vieworder/:id' element={<ViewOrder />} />
 
 				<Route path='/sukau' element={<SukauHome />} />
 				<Route path='/sukau/plantation' element={<SukauPlantation />} />

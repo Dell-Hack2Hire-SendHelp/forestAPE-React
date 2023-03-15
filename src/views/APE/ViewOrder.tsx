@@ -1,19 +1,21 @@
 import { useEffect, useState } from "react";
 import { FormContainer, TextFieldElement } from "react-hook-form-mui";
-import { Box, Typography, Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { Box, Typography, Button, TextField } from "@mui/material";
+import { useNavigate, useParams } from "react-router-dom";
 import { APEAPI } from "../../API/APE";
 import { useDialog} from '../../hooks/useDialog';
+import { useToast } from "../../hooks/useToast";
+import { useAppSelector } from "../../hooks/useRedux";
 
-interface Props {
-	orderId?: number;
-}
 
-export default function ViewOrder({orderId}:Props) {
 
+export default function ViewOrder() {
+	const user = useAppSelector((state) => state.user.user);
+	const {id} = useParams();
 	const [order, setOrder] = useState<any>(null);
 	const navigateTo = useNavigate();
 	const { openConfirmDialog, closeDialog } = useDialog();
+	const {alertError,alertInfo,alertSuccess,alertWarning} = useToast();
 
 	const handleAccept = () => {
 		openConfirmDialog({
@@ -21,7 +23,13 @@ export default function ViewOrder({orderId}:Props) {
 			message: "Are you sure you want to accept this order?",
 			onConfirm: () => {
 				//TODO: Accept order API
-				navigateTo("/APE");
+				APEAPI.postOrderStatus(parseInt(id!), "APPROVED").then((res) => {
+					alertSuccess("Order accepted!");
+					navigateTo("/APE");
+				}).catch((err) => {
+					alertError("Error accepting order!");
+				}
+				);
 			},
 			onCancel: () => {
 				closeDialog();
@@ -36,7 +44,13 @@ export default function ViewOrder({orderId}:Props) {
 			message: "Are you sure you want to reject this order?",
 			onConfirm: () => {
 				//TODO: Reject order API
-				navigateTo("/APE");
+				APEAPI.postOrderStatus(parseInt(id!), "REJECTED").then((res) => {
+					alertSuccess("Order rejected!");
+					navigateTo("/APE");
+				}).catch((err) => {
+					alertError("Error rejecting order!");
+				}
+				);
 			},
 			onCancel: () => {
 				closeDialog();
@@ -46,9 +60,20 @@ export default function ViewOrder({orderId}:Props) {
 	};
 
 	useEffect(() => {
+		if (user === null || user.role !== "APE") navigateTo("/");
 		//TODO: Get single order from database by id
+		alertInfo("Loading order...");
+		APEAPI.getOrderById(parseInt(id!)).then((res) => {
+			console.log('HERE'+res);
+			setOrder(res);
+			alertSuccess("Order loaded!");
+		}).catch((err) => {
+			alertError("Error loading order!");
+		}
+		);
 	}, []);
-
+	
+	console.log(order);
 	return (
 		<Box className='flex flex-col items-center justify-center'>
 			<Typography
@@ -56,109 +81,92 @@ export default function ViewOrder({orderId}:Props) {
 				className='font-["Cantora_One"]'
 				color='primary'
 			>
-				Order # 1
+				Order # {order?.id}
 			</Typography>
 
 			<Box width={"60%"}>
-				<FormContainer
-					defaultValues={{
-						//TODO: Get single order from database by id
-						planter: {
-							"default-text-field": "Ethan",
-						},
-						customer: {
-							"default-text-field": "Ethan",
-						},
-						date: {
-							"default-text-field": "20/12/2023",
-						},
-						receiver: {
-							"default-text-field": "Ethan",
-						},
-						receiver_email: {
-							"default-text-field": "Ethan@ethan.com",
-						},
-						coordinate: {
-							"default-text-field": "123.123  124,123",
-						},
-						tree_number: {
-							"default-text-field": "4",
-						},
-					}}
-				>
-					<Box className='flex flex-col gap-3 mt-5'>
-						<TextFieldElement
-							name={"planter.default-text-field"}
-							label={"Planter Name"}
-							variant='outlined'
-							size='small'
-							disabled
-						/>
-						<TextFieldElement
-							name={"customer.default-text-field"}
-							label='Customer Name'
-							variant='outlined'
-							size='small'
-							disabled
-						/>
-						<TextFieldElement
-							name={"date.default-text-field"}
-							label='Order Date'
-							variant='outlined'
-							size='small'
-							disabled
-						/>
-						<TextFieldElement
-							name={"receiver.default-text-field"}
-							label='Receiver Name'
-							variant='outlined'
-							size='small'
-							disabled
-						/>
-						<TextFieldElement
-							name={"receiver_email.default-text-field"}
-							label='Receiver Email'
-							variant='outlined'
-							size='small'
-							disabled
-						/>
-						<TextFieldElement
-							name={"coordinate.default-text-field"}
-							label='Coordinate'
-							variant='outlined'
-							size='small'
-							disabled
-						/>
-						<TextFieldElement
-							name={"tree_number.default-text-field"}
-							label='Number Planted Tree/s'
-							variant='outlined'
-							size='small'
-							disabled
-						/>
-					</Box>
+				<Box className='flex flex-col gap-3 mt-5'>
+					Planter Name:
+					<TextField
+						variant='outlined'
+						size='small'
+						disabled
+						value={order?.planter ? order.planter : "Unasign"}
+					/>
+					Customer Name:
+					<TextField
+						variant='outlined'
+						size='small'
+						disabled
+						value={order?.customer?.fullname}
+					/>
+					Order Date:
+					<TextField
+						variant='outlined'
+						size='small'
+						disabled
+						value={order?.order_date}
+					/>
+					Receiver Name:
+					<TextField
+						variant='outlined'
+						size='small'
+						disabled
+						value={order?.receiver_name}
+					/>
+					Receiver Email:
+					<TextField
+						variant='outlined'
+						size='small'
+						disabled
+						value={order?.receiver_email}
+					/>
+					Coordinate
+					<TextField
+						variant='outlined'
+						size='small'
+						disabled
+						value={
+							order?.latitude
+								? order.latitude + "  " + order.logitude
+								: "Unrequested"
+						}
+					/>
+					Number of Tree/s:
+					<TextField
+						variant='outlined'
+						size='small'
+						disabled
+						value={order?.trees_number}
+					/>
+				</Box>
 
-					<Box className='flex flex-row gap-3 mt-5 justify-center'>
-						<Button
-							type='submit'
-							variant='contained'
-							color='primary'
-							size='medium'
-							onClick={handleAccept}
-						>
-							Accept
-						</Button>
-						<Button
-							type='button'
-							variant='contained'
-							color='error'
-							size='medium'
-							onClick={handleReject}
-						>
-							Reject
-						</Button>
-					</Box>
-				</FormContainer>
+				<Box className='flex flex-row gap-3 mt-5 justify-center'>
+					{order?.status === "IN_REVIEW" ? (
+						<>
+							<Button
+								type='submit'
+								variant='contained'
+								color='primary'
+								size='medium'
+								onClick={handleAccept}
+							>
+								Accept
+							</Button>
+							<Button
+								type='button'
+								variant='contained'
+								color='error'
+								size='medium'
+								onClick={handleReject}
+							>
+								Reject
+							</Button>{" "}
+						</>
+					) : (
+						<Typography>The order is {order?.status}</Typography>
+					)}
+				</Box>
 			</Box>
 		</Box>
 	);

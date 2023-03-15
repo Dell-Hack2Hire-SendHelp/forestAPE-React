@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { APEAPI } from "../../API/APE";
 import {TiDatabase} from "react-icons/ti";
 import { useToast } from "../../hooks/useToast";
+import { useAppSelector } from "../../hooks/useRedux";
 
 export default function Home() {
 	return <>
@@ -12,11 +13,13 @@ export default function Home() {
 }
 
 function Order() {
+	const user = useAppSelector((state) => state.user.user);
 	const {alertError,alertInfo,alertSuccess,alertWarning} = useToast();
     const navigateTo = useNavigate();
     const [orders, setOrders] = useState<any>([]);
 
     useEffect(() => {
+		if ( user === null || user.role !== "APE") navigateTo("/");
 		alertInfo("Loading orders...");
         APEAPI.getAllOrders().then((res) => {
 			alertSuccess("Orders loaded!");
@@ -27,10 +30,7 @@ function Order() {
 		});
     }, [])
 
-    const viewOrder = () => {
-		navigateTo("/APE/vieworder");
-	};
-	console.log(orders);
+    
 
     return (
 		<>
@@ -69,7 +69,7 @@ function Order() {
 									borderRadius: 2,
 								}}
 							>
-								Customer Name: {order.customerName}
+								Customer Name: {order.customer.username}
 							</Box>
 							<Box
 								component='span'
@@ -98,7 +98,9 @@ function Order() {
 							<Button
 								size='small'
 								variant='contained'
-								onClick={viewOrder}
+								onClick={() => {
+									navigateTo(`/APE/vieworder/${order.id}`);
+								}}
 							>
 								View
 							</Button>
