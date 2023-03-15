@@ -1,5 +1,6 @@
 import { Box, Typography, Button, MenuItem } from '@mui/material';
-import { FormContainer, TextFieldElement, SelectElement } from 'react-hook-form-mui';
+import { FormContainer, TextFieldElement, SelectElement, SwitchElement } from 'react-hook-form-mui';
+import { customerAPI } from '../../API/customer';
 
 export default function Purchase() {
     return(
@@ -10,12 +11,13 @@ export default function Purchase() {
             </Typography>
             <FormContainer
                 defaultValues={{ 
-                    treenumbers: 1, 
-                    receiversname: '', 
-                    receiversemail:'', 
-                    message: 'This goes towards the restoration of the forest corridor along the Lower Kinabatangan, Sabah, malaysia, Borneo.' 
+                    treeNumbers: 1, 
+                    receiversName: '', 
+                    receiversEmail:'', 
+                    isCoordRequired: true,
+                    message: '' 
                 }}
-                onSuccess={data => console.log(data)}
+                onSuccess={data => customerAPI.createPurchase(data)}
             >
                 <Box className='flex'>
                     {/* 1, 3, 5, 10, 25, 50 */}
@@ -23,7 +25,7 @@ export default function Purchase() {
                         Number of Trees:
                     </Typography>
                     <SelectElement
-                        name='treenumbers'
+                        name='treeNumbers'
                         label='Number of Trees'
                         variant='outlined'
                         size='medium'
@@ -61,7 +63,7 @@ export default function Purchase() {
                         Receiver's Name:
                     </Typography>
                     <TextFieldElement
-                        name='receiversname'
+                        name='receiversName'
                         label="Receiver's Name"
                         variant='outlined'
                         size='medium'
@@ -89,6 +91,14 @@ export default function Purchase() {
                         label='Personalized Message'
                         variant='outlined'
                         size='medium'
+                    />
+                    <br/>
+                    <Typography variant='h5' color='primary'>
+                        Do you require the coordinates?
+                    </Typography>
+                    <SwitchElement
+                        name='isCoordRequired'
+                        label='Coordinate Required'
                     />
                 </Box>
                 <Button

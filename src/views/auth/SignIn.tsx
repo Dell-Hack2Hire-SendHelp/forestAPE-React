@@ -1,7 +1,7 @@
 
 import { Box, Typography, Button } from '@mui/material';
 import { FormContainer, TextFieldElement, PasswordElement } from 'react-hook-form-mui';
-
+import { authAPI } from '../../API/auth';
 import { AiOutlineLogin } from 'react-icons/ai';
 
 
@@ -24,7 +24,7 @@ export default function SignIn() {
 
             <FormContainer
                 defaultValues={{ username: '', password: '' }}
-                onSuccess={data => console.log(data)}
+                onSuccess={data => authAPI.login(data)}
             >
                 <Box className='flex flex-col gap-3 mt-5'>
                     <TextFieldElement
