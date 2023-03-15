@@ -10,11 +10,13 @@ import {
 import Container from "@mui/material/Container";
 import RouterOutlet from "../RouterOutlet";
 import { useDialog } from "../../hooks/useDialog";
-import React, { useState } from "react";
 import MenuItem from "@mui/material/MenuItem";
 import { FormContainer, TextFieldElement } from "react-hook-form-mui";
 import axios from "axios";
 import { useTheme } from "@emotion/react";
+import { useNavigate } from "react-router-dom";
+import { MouseEventHandler, useEffect, useState } from "react";
+import SukauAPI from "../../API/sukau";
 
 export default function SukauPlantation() {
   return (
@@ -28,12 +30,25 @@ function PlantingForm() {
   function getOrder() {
     //TODO: Get single order from database by id
 
-    return console.log("getOrder() called");
+    // return console.log("getOrder() called");
+
+    const navigateTo = useNavigate();
+    const [order, setOrder] = useState<any>([]);
+
+    useEffect(() => {
+      const res = SukauAPI.getAllOrders().then((res: { data: any }) => {
+        setOrder(res.data);
+      });
+    }, []);
+
+    const SukauCertification = () => {
+      navigateTo("/sukau/SukauCertification");
+    };
   }
 
   return (
     <Box className="flex flex-col items-center justify-center">
-      Test Sukau Plantation
+      Sukau Plantation
       <Typography variant="h5" className='font-["Cantora_One"]' color="primary">
         Plantation # 1
       </Typography>
@@ -106,7 +121,11 @@ function PlantingForm() {
 
           <div className="flex flex-col items-center h-screen">
             <br></br>
-            <Button variant="contained" color="primary">
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={SukauCertification}
+            >
               save
             </Button>
           </div>
