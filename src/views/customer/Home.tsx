@@ -5,10 +5,18 @@ import {Box, Typography, Button, Card, CardActions, CardContent, CardMedia} from
 import { useNavigate } from 'react-router-dom';
 import { HiShoppingCart } from 'react-icons/hi';
 import { AiFillStar } from 'react-icons/ai';
+import { useEffect } from 'react';
+import { useAppSelector } from '../../hooks/useRedux';
 
 
 
 export default function Home() {
+	const user = useAppSelector((state) => state.user.user);
+	useEffect(() => {
+		if ( user === null || user.role !== "CUSTOMER") navigateTo("/");
+	}, );
+
+
     const navigateTo = useNavigate();
     const viewItem = () => {
 			navigateTo("/customer/shop");
