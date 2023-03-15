@@ -10,18 +10,22 @@ export default function Home() {
 		};
     return (
 		<>
-			<Card sx={{ maxWidth: 345 }}>
+			<Card className='text-center' sx={{ maxWidth: 345 }}>
 				<CardMedia />
 				<CardContent>
 					<Typography gutterBottom variant='h5' component='div'>
 						Plant A Tree
 					</Typography>
 					<Box
+						className='flex flex-row justify-center'
 						component='span'
 						sx={{ display: "block", p: 0.5, m: 1, borderRadius: 2 }}
 					>
 						<AiFillStar />
-						
+						<AiFillStar />
+						<AiFillStar />
+						<AiFillStar />
+						<AiFillStar />
 					</Box>
 					<Box
 						component='span'
