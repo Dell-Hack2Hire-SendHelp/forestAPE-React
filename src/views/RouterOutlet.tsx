@@ -6,7 +6,7 @@ import Shop from './customer/Shop';
 import ShopBox from '../components/customer/ShopBox';
 import Purchase from './customer/Purchase';
 //APE Module
-import APEHome from './APE/Home';
+import APEHome from './APE/APEHome';
 import ViewOrder from './APE/ViewOrder';
 //SUKAU Module
 import SukauHome from "./sukau/SukauHome";
@@ -19,6 +19,18 @@ function RouterOutlet() {
             <Route path="/" element={ "Home" } />
             <Route path='/signin' element={ <SignIn /> } />
             <Route path="*" element={ "Not Found" } />
+
+            <Route path="/customer" element={ <CustomerHome /> }/>
+            <Route path="/customer/shop" element={ <Shop /> } />
+            <Route path="/customer/purchase" element={ <Purchase /> } />
+
+            <Route path="/APE" element={ <APEHome /> } />
+            <Route path="/APE/vieworder" element={ <ViewOrder /> } />
+
+            <Route path="/sukau" element={ <SukauHome /> } />
+            <Route path="/sukau/plantation" element={ <SukauPlantation /> } />
+
+
         </Routes>
     </> 
 }

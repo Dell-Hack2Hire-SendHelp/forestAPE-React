@@ -26,8 +26,6 @@ const userControls = [
     { name: "Logout", href: "/logout" },
 ];
 
-const userControls = [{ name: "Logout", href: "/logout" }];
-
 function Appbar() {
   const navigate = useNavigate();
 
