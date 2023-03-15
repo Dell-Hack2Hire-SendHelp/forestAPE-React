@@ -13,12 +13,9 @@ function Order() {
     const navigateTo = useNavigate();
     const [orders, setOrders] = useState<any>([]);
 
-    useEffect(() => {
-        const res = APEAPI.getAllOrders().then((res) => {
-            setOrders(res.data);
-        }
-        )
-    }, [])
+    // useEffect(() => {
+        
+    // }, [])
 
     const viewOrder = () => {
 

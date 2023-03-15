@@ -6,7 +6,7 @@ import { APEAPI } from "../../API/APE";
 import { useDialog} from '../../hooks/useDialog';
 
 interface Props {
-	orderId: number;
+	orderId?: number;
 }
 
 export default function ViewOrder({orderId}:Props) {
@@ -36,6 +36,7 @@ export default function ViewOrder({orderId}:Props) {
 			message: "Are you sure you want to reject this order?",
 			onConfirm: () => {
 				//TODO: Reject order API
+				navigateTo("/APE");
 			},
 			onCancel: () => {
 				closeDialog();

@@ -12,7 +12,7 @@ export default function MultiActionAreaCard() {
         <CardMedia
           component="img"
           height="140"
-          image="../assets/plantation.img"
+          src='../../assets/plantation.png'
           alt="plantation-sukau"
         />
         <CardContent>
