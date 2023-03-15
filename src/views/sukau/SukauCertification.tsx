@@ -14,6 +14,7 @@ import SukauAPI from "../../API/sukau";
 export default function Home() {
   return (
     <>
+      TEST
       <Planting />
     </>
   );
