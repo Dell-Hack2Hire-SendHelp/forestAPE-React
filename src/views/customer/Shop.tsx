@@ -55,7 +55,7 @@ export default function Shop() {
                         type="number"
 
 						options={[
-							{ id: 1, va label: "1 Tree" },
+							{ id: 1, label: "1 Tree" },
 							{ id: 3, label: "3 Tree" },
 							{ id: 5, label: "5 Tree" },
 							{ id: 10, label: "10 Tree" },
