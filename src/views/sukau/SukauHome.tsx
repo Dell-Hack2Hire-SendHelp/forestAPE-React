@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { MouseEventHandler, useEffect, useState } from "react";
-import SukauAPI from "../../API/sukau";
+import {SukauAPI} from "../../API/sukau";
 import { GiPlantRoots } from "react-icons/gi";
 import { useAppDispatch } from "../../hooks/useRedux";
 import {updateValue} from "../../redux/plantationSlice";

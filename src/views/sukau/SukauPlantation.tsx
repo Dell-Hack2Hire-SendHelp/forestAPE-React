@@ -4,7 +4,7 @@ import { FormContainer, TextFieldElement } from "react-hook-form-mui";
 import { useNavigate } from "react-router-dom";
 import { FaSeedling } from "react-icons/fa";
 import { useToast } from "../../hooks/useToast";
-import SukauAPI from "../../API/sukau";
+import {SukauAPI} from "../../API/sukau";
 import { useAppSelector } from "../../hooks/useRedux";
 
 export default function SukauPlantation() {

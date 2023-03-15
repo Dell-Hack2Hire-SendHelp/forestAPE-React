@@ -2,7 +2,7 @@ import axios from "axios";
 
 const API_URL = "http://localhost:3000/sukau/";
 
-const SukauAPI = {
+export const SukauAPI = {
   async getAllOrders() {
     try {
       const response = await axios.get(API_URL+"getApprovedOrders");
