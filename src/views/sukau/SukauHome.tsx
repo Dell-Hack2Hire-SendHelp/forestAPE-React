@@ -10,6 +10,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { MouseEventHandler, useEffect, useState } from "react";
 import SukauAPI from "../../API/sukau";
+import {GiPlantRoots} from "react-icons/gi";
 
 export default function Home() {
   return (
@@ -34,45 +35,58 @@ function Planting() {
   };
 
   return (
-    <>
-      Sukau Home
-      <Card sx={{ maxWidth: 345 }}>
-        <CardMedia />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            Plantation #1
-          </Typography>
-          <Box
-            component="span"
-            sx={{ display: "block", p: 0.5, m: 1, borderRadius: 2 }}
-          >
-            Customer Name:
-          </Box>
-          <Box
-            component="span"
-            sx={{ display: "block", p: 0.5, m: 1, borderRadius: 2 }}
-          >
-            Order Date:
-          </Box>
-          <Box
-            component="span"
-            sx={{ display: "block", p: 0.5, m: 1, borderRadius: 2 }}
-          >
-            Numeber of Trees:
-          </Box>
-          <Box
-            component="span"
-            sx={{ display: "block", p: 0.5, m: 1, borderRadius: 2 }}
-          >
-            Order Status:
-          </Box>
-        </CardContent>
-        <CardActions style={{ justifyContent: "center" }}>
-          <Button size="small" variant="contained" onClick={SukauPlantation}>
-            Plant
-          </Button>
-        </CardActions>
-      </Card>
-    </>
+		<>
+			<Box className='flex flex-col items-center justify-center mt-2'>
+				<Typography
+					variant='h4'
+					className='font-["Cantora_One"] flex '
+					color='primary'
+				>
+					Plantation <GiPlantRoots />
+				</Typography>
+			</Box>
+			<hr />
+			<Card sx={{ maxWidth: 345 }}>
+				<CardMedia />
+				<CardContent>
+					<Typography gutterBottom variant='h5' component='div'>
+						Plantation #1
+					</Typography>
+					<Box
+						component='span'
+						sx={{ display: "block", p: 0.5, m: 1, borderRadius: 2 }}
+					>
+						Customer Name:
+					</Box>
+					<Box
+						component='span'
+						sx={{ display: "block", p: 0.5, m: 1, borderRadius: 2 }}
+					>
+						Order Date:
+					</Box>
+					<Box
+						component='span'
+						sx={{ display: "block", p: 0.5, m: 1, borderRadius: 2 }}
+					>
+						Numeber of Trees:
+					</Box>
+					<Box
+						component='span'
+						sx={{ display: "block", p: 0.5, m: 1, borderRadius: 2 }}
+					>
+						Order Status:
+					</Box>
+				</CardContent>
+				<CardActions style={{ justifyContent: "center" }}>
+					<Button
+						size='small'
+						variant='contained'
+						onClick={SukauPlantation}
+					>
+						Plant
+					</Button>
+				</CardActions>
+			</Card>
+		</>
   );
 }

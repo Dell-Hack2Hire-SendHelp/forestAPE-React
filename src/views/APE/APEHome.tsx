@@ -2,6 +2,7 @@ import { Box, Button, Card, CardActions, CardContent, CardMedia, Typography } fr
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { APEAPI } from "../../API/APE";
+import {TiDatabase} from "react-icons/ti";
 
 export default function Home() {
 	return <>
@@ -24,7 +25,17 @@ function Order() {
 
     return (
 		<>
-			<Card sx={{ maxWidth: 345 }}>
+			<Box className='flex flex-col items-center justify-center mt-2'>
+				<Typography
+					variant='h4'
+					className='font-["Cantora_One"] flex '
+					color='primary'
+				>
+					View Customer Order <TiDatabase />
+				</Typography>
+			</Box>
+			<hr />
+			<Card className="mt-2" sx={{ maxWidth: 345 }}>
 				<CardMedia />
 				<CardContent>
 					<Typography gutterBottom variant='h5' component='div'>
@@ -50,7 +61,11 @@ function Order() {
 					</Box>
 				</CardContent>
 				<CardActions style={{ justifyContent: "center" }}>
-					<Button size='small' variant="contained" onClick={viewOrder}>
+					<Button
+						size='small'
+						variant='contained'
+						onClick={viewOrder}
+					>
 						View
 					</Button>
 				</CardActions>

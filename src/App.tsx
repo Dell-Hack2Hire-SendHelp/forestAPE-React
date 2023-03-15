@@ -1,7 +1,6 @@
 import { Container, Typography, Box, Link } from "@mui/material";
 
 import Appbar from "./components/appbar/Appbar";
-// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function Copyright() {
   return (

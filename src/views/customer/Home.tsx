@@ -1,6 +1,7 @@
 import {Box, Typography, Button, Card, CardActions, CardContent, CardMedia} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import {AiFillStar} from 'react-icons/ai';
+import { HiShoppingCart } from 'react-icons/hi';
+import { AiFillStar } from 'react-icons/ai';
 
 
 export default function Home() {
@@ -10,7 +11,18 @@ export default function Home() {
 		};
     return (
 		<>
-			<Card className='text-center' sx={{ maxWidth: 345 }}>
+			<Box className='flex flex-col items-center justify-center mt-2'>
+				<Typography
+					variant='h4'
+					className='font-["Cantora_One"] flex '
+					color='primary'
+				>
+					Shop
+					<HiShoppingCart />
+				</Typography>
+			</Box>
+			<hr />
+			<Card className='text-center mt-2' sx={{ maxWidth: 345 }}>
 				<CardMedia />
 				<CardContent>
 					<Typography gutterBottom variant='h5' component='div'>
