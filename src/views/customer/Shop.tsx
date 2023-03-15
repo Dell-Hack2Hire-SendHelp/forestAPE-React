@@ -1,10 +1,20 @@
 import { Box, Typography, Button } from "@mui/material";
-import { AutocompleteElement, FormContainer, TextFieldElement } from "react-hook-form-mui";
+import { useState } from "react";
+import { AutocompleteElement, FormContainer, SelectElement, TextFieldElement } from "react-hook-form-mui";
 import { AiFillStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import ShopBox from "../../components/customer/ShopBox";
 
 export default function Shop() {
+    const [product_total, setProductTotal] = useState<number>(0.00);
+    const [options_total, setOptionsTotal] = useState<number>(0.00);
+    const [grand_total, setGrandTotal] = useState<number>(0.00);
+
+    const handleQuantityChange = (e: any) => {
+        setProductTotal(e.target.value * 25);
+        console.log(product_total);
+    }
+
 	return (
 		<>
 			<Typography variant='h3' color='primary'>
@@ -39,23 +49,78 @@ export default function Shop() {
 					page prior to making a purchase.
 				</Typography>
 				<FormContainer>
-					<AutocompleteElement
+					<SelectElement
 						name='quantity'
 						label='Number of trees'
+                        type="number"
+
 						options={[
-							{ value: 1, label: "1 Tree" },
-							{ value: 3, label: "3 Tree" },
-							{ value: 5, label: "5 Tree" },
-							{ value: 10, label: "10 Tree" },
-							{ value: 25, label: "25 Tree" },
-							{ value: 50, label: "50 Tree" },
+							{ id: 1, va label: "1 Tree" },
+							{ id: 3, label: "3 Tree" },
+							{ id: 5, label: "5 Tree" },
+							{ id: 10, label: "10 Tree" },
+							{ id: 25, label: "25 Tree" },
+							{ id: 50, label: "50 Tree" },
 						]}
+                        onChange={handleQuantityChange}
+						required
 					/>
-                    <TextFieldElement
-                        required
-                        label='Recceiver name'
-                        name='receiver-name'
-                    />
+					<TextFieldElement
+						required
+						label='Recceiver name'
+						name='receiver-name'
+					/>
+					<TextFieldElement
+						label='Add personalised message on e-certificate (+RM2.00)'
+						name='message'
+					>
+						<Typography variant='caption'>
+							Default : This goes towards the restoration of the
+							forest corridor along the Lower Kinabatangan, Sabah,
+							Malaysia, Borneo.
+						</Typography>
+					</TextFieldElement>
+					<table>
+						<tr>
+							<td>
+								<Typography variant='h5' color='primary'>
+									Product Total
+								</Typography>
+							</td>
+							<td>
+								<Typography variant='h5' color='primary'>
+									{product_total}
+								</Typography>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<Typography variant='h5' color='primary'>
+									Options total
+								</Typography>
+							</td>
+							<td>
+								<Typography variant='h5' color='primary'>
+									{options_total}
+								</Typography>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<Typography variant='h5' color='primary'>
+									Grand total
+								</Typography>
+							</td>
+							<td>
+								<Typography variant='h5' color='primary'>
+									{grand_total}
+								</Typography>
+							</td>
+						</tr>
+					</table>
+					<Button variant='contained' color='primary' type='submit'>
+						Add to cart
+					</Button>
 				</FormContainer>
 			</Box>
 		</>
