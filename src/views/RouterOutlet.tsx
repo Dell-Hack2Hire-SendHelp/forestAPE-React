@@ -1,9 +1,10 @@
 import { Routes, Route } from 'react-router-dom';
 import SignIn from './auth/SignIn';
-import Home from './customer/Home';
+import CustomerHome from './customer/Home';
 import Shop from './customer/Shop';
 import ShopBox from '../components/customer/ShopBox';
 import Purchase from './customer/Purchase';
+import History from './customer/History';
 
 
 
@@ -14,9 +15,10 @@ function RouterOutlet() {
             {/* <Route path="/" element={ "Home" } /> */}
             <Route path='/signin' element={ <SignIn /> } />
             <Route path="*" element={ "Not Found" } />
-            <Route path="/" element={ <Home /> } />
+            <Route path="/" element={ <CustomerHome /> } />
             <Route path='/shop' element={ <ShopBox /> } />
             <Route path='/purchase' element={ <Purchase /> } />
+            <Route path='/history' element={ <History /> } />
         </Routes>
     </> 
 }

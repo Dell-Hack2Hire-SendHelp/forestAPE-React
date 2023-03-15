@@ -10,7 +10,7 @@ export default function Purchase() {
             </Typography>
             <FormContainer
                 defaultValues={{ 
-                    treenumbers: '1', 
+                    treenumbers: 1, 
                     receiversname: '', 
                     receiversemail:'', 
                     message: 'This goes towards the restoration of the forest corridor along the Lower Kinabatangan, Sabah, malaysia, Borneo.' 

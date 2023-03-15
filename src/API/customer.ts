@@ -1,5 +1,5 @@
 import axios from 'axios';
-const API_URL = "http://localhost:5000/forms/";
+const API_URL = "http://localhost:3000/customers/";
 
 export const customerAPI = {
     async createPurchase(data: any){
@@ -11,5 +11,5 @@ export const customerAPI = {
         const response = await axios.get(API_URL + customerId);
         return response.data;
     }
-    
+
 }
