@@ -15,24 +15,24 @@ export default function Home() {
   return (
     <>
       TEST
-      <Planting />
+      <Certificate />
     </>
   );
 }
 
-function Planting() {
+function Certificate() {
   const navigateTo = useNavigate();
   const [order, setOrder] = useState<any>([]);
 
-  useEffect(() => {
-    // const res = SukauAPI.getAllOrders().then((res: { data: any }) => {
-    //   setOrder(res.data);
-    // });
-  }, []);
+  // useEffect(() => {
+  // const res = SukauAPI.getAllOrders().then((res: { data: any }) => {
+  //   setOrder(res.data);
+  // });
+  // }, []);
 
-  const SukauPlantation = () => {
-    navigateTo("/sukau/SukauPlantation");
-  };
+  // const SukauPlantation = () => {
+  //   navigateTo("/sukau/SukauPlantation");
+  // };
 
   return (
     <>
@@ -69,9 +69,7 @@ function Planting() {
           </Box>
         </CardContent>
         <CardActions style={{ justifyContent: "center" }}>
-          <Button size="small" variant="contained" onClick={SukauPlantation}>
-            Plant
-          </Button>
+          <Button size="small" variant="contained"></Button>
         </CardActions>
       </Card>
     </>
