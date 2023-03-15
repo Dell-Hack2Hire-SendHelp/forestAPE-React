@@ -20,6 +20,8 @@ import HistoryDetail from "./customer/HistoryDetail";
 // The outlet for all the routes. This is where the routes view are defined.
 function RouterOutlet() {
 
+
+
   return (
     <>
       <Routes>
@@ -39,14 +41,13 @@ function RouterOutlet() {
         <Route path="/sukau" element={<SukauHome />} />
         <Route path="/sukau/plantation" element={<SukauPlantation />} />
         <Route path="/sukau/certification" element={<SukauCertification />} />
-      
+
 				{/* <Route path='/' element={"Home"} /> */}
 				<Route path='/' element={<SignIn />} />
 				<Route path='*' element={"Not Found"} />
 
 				<Route path='/customer' element={<CustomerHome />} />
 				<Route path='/customer/shop' element={<Shop />} />
-				<Route path='/customer/purchase' element={<Purchase />} />
 				<Route path='/customer/viewhistory' element={<ViewHistory />} />
 				<Route
 					path='/customer/historydetail'
@@ -64,8 +65,8 @@ function RouterOutlet() {
 				/>
 			</Routes>
 		</>
-	); 
 
+	);
 
 }
 

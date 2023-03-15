@@ -114,13 +114,24 @@ function Appbar() {
 							className='block md:hidden'
 						>
 							{user?.role === "CUSTOMER" ? (
-								<MenuItem
-									onClick={() => navigateTo("/customer")}
-								>
-									<Typography textAlign='center'>
-										Home
-									</Typography>
-								</MenuItem>
+								<>
+									<MenuItem
+										onClick={() => navigateTo("/customer")}
+									>
+										<Typography textAlign='center'>
+											Home
+										</Typography>
+									</MenuItem>
+									<MenuItem
+										onClick={() =>
+											navigateTo("/customer/viewhistory")
+										}
+									>
+										<Typography textAlign='center'>
+											View My Tree
+										</Typography>
+									</MenuItem>
+								</>
 							) : user?.role === "APE" ? (
 								<MenuItem onClick={() => navigateTo("/APE")}>
 									<Typography textAlign='center'>
@@ -156,14 +167,35 @@ function Appbar() {
 					{/* Pages on Large Screen */}
 
 					<Box className='hidden md:flex grow ml-4 font-bold'>
-						{user !== null && (
+						{user === null ? null : user.role === "CUSTOMER"  ? (
+							<>
+								<Button
+									onClick={handleHome}
+									className='text-white font-["Cantora_One"]'
+								>
+									Home
+								</Button>
+								<Button
+									onClick={() => navigateTo("/customer/viewhistory")}
+									className='text-white font-["Cantora_One"]'
+								>
+									View My Tree
+								</Button>
+							</> ):  user.role === "APE" ? (
 							<Button
 								onClick={handleHome}
 								className='text-white font-["Cantora_One"]'
 							>
 								Home
 							</Button>
-						)}
+						): user.role === "PLANTER" ? (
+							<Button
+								onClick={handleHome}
+								className='text-white font-["Cantora_One"]'
+							>
+								Home
+							</Button>
+						): null}
 					</Box>
 
 					{/* Avatar Controls */}

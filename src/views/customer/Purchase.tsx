@@ -1,9 +1,16 @@
 import { Box, Typography, Button, MenuItem } from '@mui/material';
+import { useEffect } from 'react';
 import { FormContainer, TextFieldElement, SelectElement, SwitchElement } from 'react-hook-form-mui';
+import { useNavigate } from 'react-router-dom';
 import { customerAPI } from '../../API/customer';
+import { useAppSelector } from '../../hooks/useRedux';
 
 export default function Purchase() {
-    
+    const navigateTo = useNavigate();
+    const user = useAppSelector((state) => state.user.user);
+	useEffect(() => {
+		if (user === null || user.role !== "CUSTOMER") navigateTo("/");
+	});
     return(
         <>
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
