@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { APEAPI } from "../../API/APE";
 import {TiDatabase} from "react-icons/ti";
+import { useToast } from "../../hooks/useToast";
 
 export default function Home() {
 	return <>
@@ -11,17 +12,25 @@ export default function Home() {
 }
 
 function Order() {
+	const {alertError,alertInfo,alertSuccess,alertWarning} = useToast();
     const navigateTo = useNavigate();
     const [orders, setOrders] = useState<any>([]);
 
-    // useEffect(() => {
-        
-    // }, [])
+    useEffect(() => {
+		alertInfo("Loading orders...");
+        APEAPI.getAllOrders().then((res) => {
+			alertSuccess("Orders loaded!");
+			setOrders(res);
+			console.log(res);
+		}).catch((err) => {
+			alertError("Error loading orders!");
+		});
+    }, [])
 
     const viewOrder = () => {
-
 		navigateTo("/APE/vieworder");
 	};
+	console.log(orders);
 
     return (
 		<>
@@ -35,41 +44,68 @@ function Order() {
 				</Typography>
 			</Box>
 			<hr />
-			<Card className="mt-2" sx={{ maxWidth: 345 }}>
-				<CardMedia />
-				<CardContent>
-					<Typography gutterBottom variant='h5' component='div'>
-						Order #1
-					</Typography>
-					<Box
-						component='span'
-						sx={{ display: "block", p: 0.5, m: 1, borderRadius: 2 }}
+			<Box sx={{display:"flex", flexWrap:"wrap", justifyContent:"start"}}>
+				{orders.map((order: any) => (
+					<Card
+						className='mt-2 mr-3'
+						sx={{ maxWidth: 345 }}
+						key={order.id}
 					>
-						Customer Name:
-					</Box>
-					<Box
-						component='span'
-						sx={{ display: "block", p: 0.5, m: 1, borderRadius: 2 }}
-					>
-						Order Date:
-					</Box>
-					<Box
-						component='span'
-						sx={{ display: "block", p: 0.5, m: 1, borderRadius: 2 }}
-					>
-						Order Status:
-					</Box>
-				</CardContent>
-				<CardActions style={{ justifyContent: "center" }}>
-					<Button
-						size='small'
-						variant='contained'
-						onClick={viewOrder}
-					>
-						View
-					</Button>
-				</CardActions>
-			</Card>
+						<CardMedia />
+						<CardContent>
+							<Typography
+								gutterBottom
+								variant='h5'
+								component='div'
+							>
+								Order # {order.id}
+							</Typography>
+							<Box
+								component='span'
+								sx={{
+									display: "block",
+									p: 0.5,
+									m: 1,
+									borderRadius: 2,
+								}}
+							>
+								Customer Name: {order.customerName}
+							</Box>
+							<Box
+								component='span'
+								sx={{
+									display: "block",
+									p: 0.5,
+									m: 1,
+									borderRadius: 2,
+								}}
+							>
+								Order Date: {order.order_date}
+							</Box>
+							<Box
+								component='span'
+								sx={{
+									display: "block",
+									p: 0.5,
+									m: 1,
+									borderRadius: 2,
+								}}
+							>
+								Order Status: {order.status}
+							</Box>
+						</CardContent>
+						<CardActions style={{ justifyContent: "center" }}>
+							<Button
+								size='small'
+								variant='contained'
+								onClick={viewOrder}
+							>
+								View
+							</Button>
+						</CardActions>
+					</Card>
+				))}
+			</Box>
 		</>
 	);
 }
