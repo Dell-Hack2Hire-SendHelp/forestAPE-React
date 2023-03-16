@@ -65,7 +65,7 @@ function PlantingForm() {
   };
 
   const SukauCertification = (data:any) => {
-    data.id 
+    data.id= order.id;
     console.log(data);
     SukauAPI.savePlant(data);
     navigateTo("/sukau/certification");
