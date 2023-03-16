@@ -36,7 +36,10 @@ function PlantingForm() {
   }, []);
 
 
-  const SukauCertification = () => {
+  const SukauCertification = (data:any) => {
+    data.id = order.id;
+    console.log(data);
+    SukauAPI.savePlant(data);
     navigateTo("/sukau/certification");
   };
 
@@ -58,7 +61,16 @@ function PlantingForm() {
       </Box>
       <hr />
       <Box className="flex flex-col items-center justify-center">
-        <FormContainer onSuccess={SukauCertification} onError={handleError}>
+        <FormContainer 
+          defaultValues={
+            {
+              latitude: order?.latitude,
+              longitude: order?.longitude,
+              id: order?.id,
+          }
+          }
+          onSuccess={SukauCertification}
+          onError={handleError}>
           <Box className="flex flex-col gap-3 mt-5">
             <TextFieldElement
               name={"order?.receiver_name"}
@@ -88,8 +100,8 @@ function PlantingForm() {
                   required
                   fullWidth
                   variant="outlined"
-                  label="Longitude"
-                  name="Longitude"
+                  label="longitude"
+                  name="longitude"
                   validation={{
                     required: "Longitude is required",
                   }}
@@ -100,8 +112,8 @@ function PlantingForm() {
                   required
                   fullWidth
                   variant="outlined"
-                  label="Latitude"
-                  name="Latitude"
+                  label="latitude"
+                  name="latitude"
                   validation={{
                     required: "Latitude is required",
                   }}

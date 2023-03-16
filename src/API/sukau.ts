@@ -29,8 +29,18 @@ export const SukauAPI = {
     try {
       const response = await axios.post(API_URL, id);
       if (response.status === 200) {
+        return response.data;
       }
-      return response.data;
     } catch (error: any) {}
   },
+
+  async savePlant(plant: any) {
+    try{
+      const response = await axios.post(API_URL+"completeOrder", plant);
+      if(response.status === 200){
+        return response.data;
+      }
+    }
+    catch(error: any){}
+  }
 };
