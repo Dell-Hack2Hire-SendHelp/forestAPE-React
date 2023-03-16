@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import SukauAPI from "../../API/sukau";
+import {SukauAPI} from "../../API/sukau";
 import React from "react";
 import { MdHistoryEdu } from "react-icons/md";
 import { PDFViewer, PDFDownloadLink } from "@react-pdf/renderer";
