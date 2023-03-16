@@ -24,20 +24,48 @@ function PlantingForm() {
   const { alertSuccess, alertError } = useToast();
   const { value } = useAppSelector((state) => state.plantation);
 
+  // useEffect(() => {
+  //   const res = SukauAPI.getOrderById(value)
+  //     .then((res: { data: any }) => {
+  //       setOrder(res);
+  //       console.log(res);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
+
   useEffect(() => {
-    const res = SukauAPI.getOrderById(value)
-      .then((res: { data: any }) => {
-        setOrder(res);
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const orderId = value;
+    const storedData = localStorage.getItem(`sukau_${orderId}`);
+    if (storedData) {
+      setOrder(JSON.parse(storedData));
+    } else {
+      SukauAPI.getOrderById(value)
+        .then((res: { data: any }) => {
+          setOrder(res);
+          localStorage.setItem(`sukau_${orderId}`, JSON.stringify(res));
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, []);
 
+  // handleChange
+  const handleChange = (e: any) => {
+    const { name, value } = e.target;
+    setOrder({ ...order, [name]: value });
+    // update the local storage with the new data
+    const storedData = localStorage.getItem(`sukau_${order.id}`);
+    if (storedData) {
+      localStorage.setItem(`sukau_${order.id}`, JSON.stringify(order));
+    }
+  };
 
   const SukauCertification = (data:any) => {
-    data.id = order.id;
+    data.id 
     console.log(data);
     SukauAPI.savePlant(data);
     navigateTo("/sukau/certification");
@@ -102,6 +130,7 @@ function PlantingForm() {
                   variant="outlined"
                   label="longitude"
                   name="longitude"
+                  onChange={handleChange}
                   validation={{
                     required: "Longitude is required",
                   }}
@@ -114,6 +143,7 @@ function PlantingForm() {
                   variant="outlined"
                   label="latitude"
                   name="latitude"
+                  onChange={handleChange}
                   validation={{
                     required: "Latitude is required",
                   }}
